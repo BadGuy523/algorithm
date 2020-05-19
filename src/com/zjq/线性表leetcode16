@@ -1,0 +1,34 @@
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+         Arrays.sort(nums);
+         int closestSum = 0;
+         int diff = Integer.MAX_VALUE;
+         
+         
+         for(int i=0; i<nums.length-2; i++)
+         {
+             int left = i + 1;
+             int right = nums.length - 1;
+             
+             while(left < right)
+             {
+                 int temp_sum = nums[i] + nums[left] + nums[right];
+                 int temp_diff = Math.abs(temp_sum - target);
+                 if(temp_diff < diff)
+                 {
+                     closestSum = temp_sum;
+                     diff = temp_diff;
+                 }
+                 
+                 if(temp_sum < target)
+                     left++;
+                 else if(temp_sum > target)
+                     right--;
+                 else 
+                     return temp_sum;
+             }
+         }
+         
+         return closestSum;
+    }
+}
